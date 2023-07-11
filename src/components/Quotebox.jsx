@@ -47,7 +47,7 @@ function QuoteBox() {
                 </a>
                 <button className="button" id="new-quote" onClick={newQuoteHandler}>New quote</button>
             </div>
-            <p className="quote-author"> -developed by r4cc</p>
+            <p className="quote-author"> -by r4cc</p>
       </div>
     )
 
