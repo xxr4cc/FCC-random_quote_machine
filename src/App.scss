@@ -25,7 +25,8 @@ body {
   align-items: center;
   height: 100vh;
 
-  transition: all ease-in-out;
+  transition-timing-function: ease-in-out;
+  transition-property: color, background;
   transition-duration: 1s;
 }
 
@@ -35,13 +36,13 @@ body {
   display: block;
   margin: 15px auto 30px auto;
   font-size: 0.8em;
-  color: #333;
+  color: #999;
 }
 
 .footer a {
   font-weight: 500;
   text-decoration: none;
-  color: #333;
+  color: #111;
 }
 
 #quote-box {
@@ -50,7 +51,7 @@ body {
   width: 450px;
   padding: 40px 50px;
   display: table;
-  background-color: #333;
+  background-color: #111;
 }
 
 #quote-box .quote-text {
@@ -76,12 +77,6 @@ body {
   text-align: right;
 }
 
-.quote-text:active,
-.quote-author:active {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
 #quote-box .buttons {
   width: 450px;
   margin: auto;
@@ -92,7 +87,7 @@ body {
   height: 38px;
   border: none;
   border-radius: 3px;
-  color: #333;
+  color: #111;
   background-color: var(--random-color);
   outline: none;
   font-size: 0.85em;
@@ -101,7 +96,8 @@ body {
   opacity: 1;
   cursor: pointer;
 
-  transition: all ease-in-out;
+  transition-timing-function: ease-in-out;
+  transition-property: color, background;
   transition-duration: 1s;
 }
 
@@ -123,4 +119,13 @@ body {
 
 #quote-box .buttons .button#new-quote {
   float: right;
+}
+
+.program-author {
+  width: 450px;
+  height: auto;
+  clear: both;
+  padding-top: 20px;
+  font-size: 1em;
+  text-align: right;
 }

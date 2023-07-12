@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
+import $ from 'jquery';
+window.$ = $;
 
 function QuoteBox() {
     const [quote, setQuote] = useState("");
     const [author, setAuthor] = useState("");
     const [postText, setPostText] = useState("");
-    const [randomColor, setRandomColor] = useState("rgb(51, 51, 51)");
 
     useEffect(() => {
         newQuoteHandler();
     }, []);
 
-    //Change color on new quote
-    useEffect(() => {
-        generateRandomColor();
-    }, [quote]);
+    //Handler for every new Quote
+    const newQuoteHandler = () => {
+
+        fetchQuote()
+        .then(response => {
+            setQuote(response.quoteText);
+            setAuthor(response.quoteAuthor);
+            setPostText(response.quoteText + ' -' + response.quoteAuthor);
+        })
+
+        animateCss();
+    };
 
     //Fetch Quotes from QuoteGarden
     const fetchQuote = async() => {
@@ -23,17 +32,8 @@ function QuoteBox() {
             .catch(error => console.error(error));
     };
 
-    //Handler for every new Quote
-    const newQuoteHandler = () => {
-        fetchQuote()
-        .then(response => {
-            setQuote(response.quoteText);
-            setAuthor(response.quoteAuthor);
-            setPostText(response.quoteText + ' -' + response.quoteAuthor);
-        })
-    };
-
-    const generateRandomColor = () => {
+    const animateCss = () => {
+        
         // Generate random RGB values between 0 and 255
         const red = Math.floor(Math.random() * 256);
         const green = Math.floor(Math.random() * 256);
@@ -41,9 +41,17 @@ function QuoteBox() {
       
         // Construct the RGB color string
         const color = `rgb(${red}, ${green}, ${blue})`;
-      
-        setRandomColor(color);
-        document.documentElement.style.setProperty('--random-color', randomColor);
+        document.documentElement.style.setProperty('--random-color', color);
+        
+        $('.quote-text').animate({ opacity: 0 }, 500, function () {
+            $(this).animate({ opacity: 1 }, 500);
+          });
+        
+        $('.quote-author').animate({ opacity: 0 }, 500, function () {
+            $(this).animate({ opacity: 1 }, 500);
+          });
+
+
     }
 
     //Make new urls
@@ -66,7 +74,7 @@ function QuoteBox() {
                 </a>
                 <button className="button" id="new-quote" onClick={newQuoteHandler}>New quote</button>
             </div>
-            <p className="quote-author"> -by r4cc</p>
+            <p className="program-author"> -by r4cc</p>
       </div>
     )
 
