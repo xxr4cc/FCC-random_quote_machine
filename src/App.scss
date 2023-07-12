@@ -1,3 +1,7 @@
+.root{
+  --random-color: rgb(51, 51, 51);
+}
+
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
 * {
   margin: 0;
@@ -12,14 +16,17 @@ div {
 }
 
 body {
-  background-color: #333;
-  color: #333;
+  background-color: var(--random-color);
+  color: var(--random-color);
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+
+  transition: all ease-in-out;
+  transition-duration: 1s;
 }
 
 .footer {
@@ -28,12 +35,13 @@ body {
   display: block;
   margin: 15px auto 30px auto;
   font-size: 0.8em;
-  color: #fff;
+  color: #333;
 }
+
 .footer a {
   font-weight: 500;
   text-decoration: none;
-  color: #fff;
+  color: #333;
 }
 
 #quote-box {
@@ -42,8 +50,9 @@ body {
   width: 450px;
   padding: 40px 50px;
   display: table;
-  background-color: #fff;
+  background-color: #333;
 }
+
 #quote-box .quote-text {
   text-align: center;
   width: 450px;
@@ -52,10 +61,12 @@ body {
   font-weight: 500;
   font-size: 1.75em;
 }
+
 #quote-box .quote-text i {
   font-size: 1em;
   margin-right: 0.4em;
 }
+
 #quote-box .quote-author {
   width: 450px;
   height: auto;
@@ -64,27 +75,40 @@ body {
   font-size: 1em;
   text-align: right;
 }
+
+.quote-text:active,
+.quote-author:active {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
 #quote-box .buttons {
   width: 450px;
   margin: auto;
   display: block;
 }
+
 #quote-box .buttons .button {
   height: 38px;
   border: none;
   border-radius: 3px;
-  color: #fff;
-  background-color: #333;
+  color: #333;
+  background-color: var(--random-color);
   outline: none;
   font-size: 0.85em;
   padding: 8px 18px 6px 18px;
   margin-top: 30px;
   opacity: 1;
   cursor: pointer;
+
+  transition: all ease-in-out;
+  transition-duration: 1s;
 }
+
 #quote-box .buttons .button:hover {
   opacity: 0.9;
 }
+
 #quote-box .buttons .button#tweet-quote,
 #quote-box .buttons .button#tumblr-quote {
   float: left;
@@ -96,6 +120,7 @@ body {
   height: 30px;
   width: 40px;
 }
+
 #quote-box .buttons .button#new-quote {
   float: right;
 }

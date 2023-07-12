@@ -4,10 +4,16 @@ function QuoteBox() {
     const [quote, setQuote] = useState("");
     const [author, setAuthor] = useState("");
     const [postText, setPostText] = useState("");
+    const [randomColor, setRandomColor] = useState("rgb(51, 51, 51)");
 
     useEffect(() => {
-        newQuoteHandler()
+        newQuoteHandler();
     }, []);
+
+    //Change color on new quote
+    useEffect(() => {
+        generateRandomColor();
+    }, [quote]);
 
     //Fetch Quotes from QuoteGarden
     const fetchQuote = async() => {
@@ -26,6 +32,19 @@ function QuoteBox() {
             setPostText(response.quoteText + ' -' + response.quoteAuthor);
         })
     };
+
+    const generateRandomColor = () => {
+        // Generate random RGB values between 0 and 255
+        const red = Math.floor(Math.random() * 256);
+        const green = Math.floor(Math.random() * 256);
+        const blue = Math.floor(Math.random() * 256);
+      
+        // Construct the RGB color string
+        const color = `rgb(${red}, ${green}, ${blue})`;
+      
+        setRandomColor(color);
+        document.documentElement.style.setProperty('--random-color', randomColor);
+    }
 
     //Make new urls
     const encodedText = encodeURIComponent(postText);
