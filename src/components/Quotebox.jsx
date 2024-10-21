@@ -12,16 +12,15 @@ function QuoteBox() {
     }, []);
 
     //Handler for every new Quote
-    const newQuoteHandler = () => {
+    const newQuoteHandler = async() => {
 
-        fetchQuote()
+        await fetchQuote()
         .then(response => {
             console.log(response);
             setQuote(response.content);
             setAuthor(response.originator.name);
             setPostText(response.content + ' -' + response.originator.name);
         })
-
         animateCss();
     };
 
@@ -53,12 +52,12 @@ function QuoteBox() {
         const color = `rgb(${red}, ${green}, ${blue})`;
         document.documentElement.style.setProperty('--random-color', color);
         
-        $('.quote-text').animate({ opacity: 0 }, 500, function () {
-            $(this).animate({ opacity: 1 }, 500);
+        $('.quote-text').animate({ opacity: 0 }, 1000, function () {
+            $(this).animate({ opacity: 1 }, 1000);
           });
         
-        $('.quote-author').animate({ opacity: 0 }, 500, function () {
-            $(this).animate({ opacity: 1 }, 500);
+        $('.quote-author').animate({ opacity: 0 }, 1000, function () {
+            $(this).animate({ opacity: 1 }, 1000);
           });
 
 
