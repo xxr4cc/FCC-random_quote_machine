@@ -16,9 +16,10 @@ function QuoteBox() {
 
         fetchQuote()
         .then(response => {
-            setQuote(response.quoteText);
-            setAuthor(response.quoteAuthor);
-            setPostText(response.quoteText + ' -' + response.quoteAuthor);
+            console.log(response);
+            setQuote(response.content);
+            setAuthor(response.originator.name);
+            setPostText(response.content + ' -' + response.originator.name);
         })
 
         animateCss();
@@ -26,11 +27,20 @@ function QuoteBox() {
 
     //Fetch Quotes from QuoteGarden
     const fetchQuote = async() => {
-        return fetch('https://quote-garden.onrender.com/api/v3/quotes/random')
+        const url = 'https://quotes15.p.rapidapi.com/quotes/random/?language_code=en';
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': '20497ffce7msh357d5a13c8e24a6p169f17jsnae53af036ec2',
+                'x-rapidapi-host': 'quotes15.p.rapidapi.com'
+            }
+        };
+
+        return fetch(url, options)
             .then(response => response.json())
-            .then(data => data.data[0])
             .catch(error => console.error(error));
     };
+ 
 
     const animateCss = () => {
         
